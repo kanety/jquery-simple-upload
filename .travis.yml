@@ -1,0 +1,12 @@
+sudo: required
+language: node_js
+node_js:
+  - "8"
+  - "10"
+addons:
+  chrome: stable
+  firefox: latest
+script:
+  - npm start &
+  - sleep 5
+  - npm run test

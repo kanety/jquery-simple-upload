@@ -1,0 +1,54 @@
+{
+  "name": "@kanety/jquery-simple-upload",
+  "description": "A jquery plugin for ajax file upload",
+  "version": "0.1.0",
+  "author": "Yoshikazu Kaneta <kaneta@sitebridge.co.jp>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kanety/jquery-simple-upload.git"
+  },
+  "keywords": [
+    "jquery",
+    "jquery-plugin",
+    "file upload"
+  ],
+  "license": "MIT",
+  "main": "dist/jquery-simple-upload.js",
+  "style": "dist/jquery-simple-upload.css",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "watch": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "test": "karma start"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
+    "istanbul-instrumenter-loader": "^3.0.1",
+    "karma": "^4.1.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.2",
+    "karma-coverage-istanbul-reporter": "^2.0.5",
+    "karma-edge-launcher": "^0.4.2",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-html2js-preprocessor": "^1.1.0",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-jasmine": "^2.0.1",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^4.0.2",
+    "mini-css-extract-plugin": "^0.5.0",
+    "multiparty": "^4.2.1",
+    "node-sass": "^4.10.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^7.1.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.11"
+  }
+}

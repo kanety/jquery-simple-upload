@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" href="dist/jquery-simple-upload.css">
+  <script src="dist/jquery-simple-upload.js"></script>
+  <style>
+  .dropZone {
+    width: 300px;
+    height: 50px;
+    border: 1px solid #ccc;
+  }
+  #basic_message {
+    height: 200px;
+    overflow-y: scroll;
+  }
+  </style>
+</head>
+<body>
+  <h1>Basic use</h1>
+  <input type="file" name="file" multiple="true" id="basic">
+  <div id="basic_drop_zone" class="dropZone"><div>Drop files here</div></div>
+  <div id="basic_progress"></div>
+  <div id="basic_message"></div>
+  <script>
+  $('#basic').simpleUpload({
+    url: '/post',
+    method: 'post',
+    params: { param: 'test' },
+    dropZone: '#basic_drop_zone',
+    progress: '#basic_progress'
+  }).on('upload:before', function(e, files) {
+    console.log('before');
+    console.log(files);
+  }).on('upload:after', function(e, files) {
+    console.log('after');
+    console.log(files);
+  }).on('upload:start', function(e, file, i) {
+    console.log('start ' + i);
+    console.log(file);
+  }).on('upload:progress', function(e, file, i, loaded, total) {
+    console.log('progress ' + i + ' ' + loaded + '/' + total);
+  }).on('upload:end', function(e, file, i) {
+    console.log('end ' + i);
+    console.log(file);
+  }).on('upload:done', function(e, file, i) {
+    console.log('done ' + i);
+    console.log(file);
+    $('#basic_message').prepend('<p>done: ' + file.name + '</p>');
+  }).on('upload:fail', function(e, file, i) {
+    console.log('fail ' + i);
+    console.log(file);
+    $('#basic_message').prepend('<p>fail: ' + file.name + '</p>');
+  });
+  </script>
+
+  <h1>Limit</h1>
+  <p>1 file, < 100 Bytes</p>
+  <input type="file" name="file" multiple="true" id="limit">
+  <div id="limit_drop_zone" class="dropZone">Drop files here</div>
+  <script>
+  $('#limit').simpleUpload({
+    maxFileNum: 4,
+    maxFileSize: 100,
+    allowedFileName: /\.txt$/,
+    allowedMimeType: /^text\//,
+    dropZone: '#limit_drop_zone'
+  }).on('upload:over', function(e, files) {
+    alert('Number of files is over');
+  }).on('upload:invalid', function(e, files) {
+    for (var i=0; i<files.length; i++) {
+      alert('Invalid ' + files[i].reason + ': ' + files[i].name);
+    }
+  });
+  </script>
+</body>
+</html>
