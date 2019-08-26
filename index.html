@@ -61,11 +61,13 @@
   <div id="limit_drop_zone" class="dropZone">Drop files here</div>
   <script>
   $('#limit').simpleUpload({
+    url: '/post',
     maxFileNum: 4,
     maxFileSize: 100,
     allowedFileName: /\.txt$/,
     allowedMimeType: /^text\//,
-    dropZone: '#limit_drop_zone'
+    dropZone: '#limit_drop_zone',
+    validator: validate,
   }).on('upload:over', function(e, files) {
     alert('Number of files is over');
   }).on('upload:invalid', function(e, files) {
@@ -73,6 +75,17 @@
       alert('Invalid ' + files[i].reason + ': ' + files[i].name);
     }
   });
+  function validate(files) {
+    var passed = []
+    for (var i=0; i<files.length; i++) {
+      if (files[i].name == 'test.txt') {
+        alert("can't upload test.txt");
+      } else {
+        passed.push(files[i]);
+      }
+    }
+    return passed;
+  }
   </script>
 </body>
 </html>

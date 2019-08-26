@@ -124,6 +124,20 @@ describe('jquery-simple-upload', () => {
     });
   });
 
+  describe('validate', () => {
+    beforeEach(() => {
+      spyOn(window, 'alert');
+      let $upload = $('#limit');
+      $upload.trigger(change([
+        { name: 'test.txt', type: 'text/plain', size: 1 }
+      ]));
+    });
+
+    it('custom validator', () => {
+      expect(window.alert).toHaveBeenCalledWith("can't upload test.txt");
+    });
+  });
+
   describe('destroy', () => {
     let $basic;
 
