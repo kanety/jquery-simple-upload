@@ -59,17 +59,17 @@ export default class SimpleUpload {
     });
 
     if (this.$dropZone.length) {
-      this.$dropZone.on(`drop.${NAMESPACE}`, (e) => {
+      this.$dropZone.on(`drop.${this.namespace}`, (e) => {
         e.preventDefault();
         e.stopPropagation();
         this.dragCounter = 0;
         this.$dropZone.removeClass('simple-upload-dragover');
         this.process(e.originalEvent.dataTransfer.files);
-      }).on(`dragenter.${NAMESPACE}`, (e) => {
+      }).on(`dragenter.${this.namespace}`, (e) => {
         e.preventDefault();
         this.dragCounter++;
         this.$dropZone.addClass('simple-upload-dragover');
-      }).on(`dragleave.${NAMESPACE}`, (e) => {
+      }).on(`dragleave.${this.namespace}`, (e) => {
         e.preventDefault();
         this.dragCounter--;
         if (this.dragCounter == 0) {
