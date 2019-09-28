@@ -17,10 +17,17 @@ module.exports = function(config) {
     files: [
       'node_modules/jquery/dist/jquery.min.js',
       'src/*.js',
-      'test/*spec.js',
-      'index.html'
+      'test/**/*spec.js',
+      'index.html', {
+        pattern: 'dist/*',
+        served: true,
+        included: false
+      }
     ],
 
+    proxies: {
+      '/dist/': '/base/dist/',
+    },
 
     // list of files / patterns to exclude
     exclude: [
@@ -31,7 +38,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'src/*.js': ['webpack', 'sourcemap'],
-      'test/*spec.js': ['webpack', 'sourcemap'],
+      'test/**/*spec.js': ['webpack', 'sourcemap'],
       'index.html': ['html2js']
     },
 

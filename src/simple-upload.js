@@ -245,9 +245,31 @@ export default class SimpleUpload {
   buildFormData(file) {
     let data = new FormData();
     data.append(this.$input.attr('name'), file);
-    for (let key in this.options.params) {
-      data.append(key, this.options.params[key]);
+
+    let params = SimpleUpload.makeParams(this.options.params);
+    for (let key in params) {
+      data.append(key, params[key]);
     }
+    return data;
+  }
+
+  static makeParams(params) {
+    let data = {}
+
+    switch (Object.prototype.toString.call(params)) {
+    case '[object Function]':
+      data = params();
+      break;
+    case '[object Array]':
+      params.forEach((item)=> {
+        data[item.name] = item.value;
+      });
+      break;
+    case '[object Object]':
+      $.extend(data, params);
+      break;
+    }
+
     return data;
   }
 
