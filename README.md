@@ -46,7 +46,7 @@ $('#input').simpleUpload({
 });
 ```
 
-Ajax options:
+Set ajax options:
 
 ```javascript
 $('#input').simpleUpload({
@@ -55,11 +55,26 @@ $('#input').simpleUpload({
     'HEADER_KEY': 'HEADER_VALUE'
   },
   dataType: 'application/json',
-  params: {
-    'PARAM_KEY': 'PARAM_VALUE'
-  },
   timeout: 0,
   async: true
+});
+```
+
+Set query parameters:
+
+```javascript
+$('#input').simpleUpload({
+  // object
+  params: {
+    'KEY': 'VALUE'
+  },
+});
+
+$('#input').simpleUpload({
+  // callback
+  params: function() {
+    return { 'KEY': 'VALUE' };
+  },
 });
 ```
 
