@@ -36,7 +36,7 @@ export default class SimpleUpload {
 
   init() {
     this.$input.addClass(NAMESPACE);
-    this.$dropZone.addClass(NAMESPACE).addClass('upload-droppable');
+    this.$dropZone.addClass(NAMESPACE).addClass('simple-upload-droppable');
     this.$progress.addClass(NAMESPACE);
 
     this.unbind();
@@ -45,7 +45,7 @@ export default class SimpleUpload {
 
   destroy() {
     this.$input.removeClass(NAMESPACE);
-    this.$dropZone.removeClass(NAMESPACE).removeClass('upload-droppable');
+    this.$dropZone.removeClass(NAMESPACE).removeClass('simple-upload-droppable');
     this.$progress.removeClass(NAMESPACE);
 
     this.unbind();
@@ -62,17 +62,17 @@ export default class SimpleUpload {
         e.preventDefault();
         e.stopPropagation();
         this.dragCounter = 0;
-        this.$dropZone.removeClass('upload-dragover');
+        this.$dropZone.removeClass('simple-upload-dragover');
         this.process(e.originalEvent.dataTransfer.files);
       }).on(`dragenter.${NAMESPACE}`, (e) => {
         e.preventDefault();
         this.dragCounter++;
-        this.$dropZone.addClass('upload-dragover');
+        this.$dropZone.addClass('simple-upload-dragover');
       }).on(`dragleave.${NAMESPACE}`, (e) => {
         e.preventDefault();
         this.dragCounter--;
         if (this.dragCounter == 0) {
-          this.$dropZone.removeClass('upload-dragover');
+          this.$dropZone.removeClass('simple-upload-dragover');
         }
       });
 
@@ -206,7 +206,7 @@ export default class SimpleUpload {
   }
 
   progress(file, index, loaded, total) {
-    this.findProgress(index).find('.upload-percent').text(Math.ceil((loaded/total)*100) + '%');
+    this.findProgress(index).find('.simple-upload-percent').text(Math.ceil((loaded/total)*100) + '%');
 
     this.$input.trigger('upload:progress', [file, index, loaded, total]);
   }
@@ -226,14 +226,14 @@ export default class SimpleUpload {
   }
 
   buildProgress(file, index) {
-    let $p = $('<div>').addClass('upload-progress').data('upload-index', index);
-    $('<span>').addClass('upload-filename').text(file.name).appendTo($p);
-    $('<span>').addClass('upload-percent').text('...').appendTo($p);
+    let $p = $('<div>').addClass('simple-upload-progress').data('upload-index', index);
+    $('<span>').addClass('simple-upload-filename').text(file.name).appendTo($p);
+    $('<span>').addClass('simple-upload-percent').text('...').appendTo($p);
     this.$progress.append($p);
   }
 
   findProgress(index) {
-    return this.$progress.find('.upload-progress').filter((i, elem) => {
+    return this.$progress.find('.simple-upload-progress').filter((i, elem) => {
       return $(elem).data('upload-index') == index;
     });
   }

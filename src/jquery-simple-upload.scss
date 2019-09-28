@@ -1,8 +1,8 @@
 .simple-upload {
-  &.upload-dragover {
+  &-dragover {
     background-color: #eef;
   }
-  .upload-filename {
+  &-filename {
     margin-right: 0.5em;
   }
 }
