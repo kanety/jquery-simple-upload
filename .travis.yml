@@ -7,6 +7,12 @@ node_js:
 addons:
   chrome: stable
   firefox: latest
+env:
+  - JQUERY=3.3
+  - JQUERY=3.4
+install:
+  - npm install
+  - npm install jquery@$JQUERY
 script:
   - npm start &
   - sleep 5
