@@ -2,7 +2,6 @@ import $ from 'jquery';
 
 import { NAMESPACE } from './consts';
 import SimpleUpload from './simple-upload';
-import './jquery-simple-upload.scss';
 
 $.fn.simpleUpload = function(options) {
   return this.each((i, elem) => {

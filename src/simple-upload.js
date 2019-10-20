@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+import './simple-upload.scss';
 import { NAMESPACE } from './consts';
 
 const DEFAULTS = {
