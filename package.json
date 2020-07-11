@@ -1,7 +1,7 @@
 {
   "name": "@kanety/jquery-simple-upload",
   "description": "A jquery plugin for ajax file upload",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "Yoshikazu Kaneta <kaneta@sitebridge.co.jp>",
   "repository": {
     "type": "git",
