@@ -27,7 +27,15 @@
   $('#basic').simpleUpload({
     url: '/post',
     method: 'post',
-    params: { param: 'test' },
+    params: { key: 'test' },
+    ajax: {
+      headers: { 'X-Test': 'test' },
+      statusCode: {
+        200: function() {
+          console.log('success!');
+        }
+      }
+    },
     dropZone: '#basic_drop_zone',
     progress: '#basic_progress'
   }).on('upload:before', function(e, files) {

@@ -6,11 +6,8 @@ import { NAMESPACE } from './consts';
 const DEFAULTS = {
   url: '',
   method: 'post',
-  headers: {},
-  dataType: null,
   params: {},
-  timeout: 0,
-  async: true,
+  ajax: {},
   dropZone: null,
   progress: null,
   validator: null,
@@ -159,14 +156,10 @@ export default class SimpleUpload {
 
   uploadFile(file, index) {
     let d = new $.Deferred();
-    $.ajax({
+    $.ajax($.extend({
       url: this.options.url,
       method: this.options.method,
-      headers: this.options.headers,
-      dataType: this.options.dataType,
       data: this.buildFormData(file),
-      timeout: this.options.timeout,
-      async: this.options.async,
       processData: false,
       contentType: false,
       beforeSend: () => {
@@ -180,8 +173,8 @@ export default class SimpleUpload {
           }, false);
         }
         return xhr;
-      },
-    }).done((data, status, xhr) => {
+      }}, this.options.ajax)
+    ).done((data, status, xhr) => {
       this.done(file, index, data, status, xhr);
     }).fail((xhr, status, error) => {
       this.fail(file, index, xhr, status, error);
